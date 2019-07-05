@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
 var g_content string
@@ -40,8 +41,7 @@ func Echo(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	//level := os.Args[1]
-	level := "3"
+	level := os.Args[1]
 	g_content = ReadContent(level)
 	http.HandleFunc("/v1/echo", Echo)
 	if err := http.ListenAndServe(":9000", nil); err != nil {
